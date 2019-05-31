@@ -37,6 +37,9 @@ import javafx.animation.PathTransition;
 public class Friend extends Application {
   @Override
   public void start(Stage primaryStage) throws FileNotFoundException {
+    //public static Figure figure;
+    public static Emotion emotion;
+    public static Figure f1;
     //Creating Background Image
     //try {
       Image background1 = new Image(new FileInputStream("Corridor.jpg"));
@@ -46,7 +49,7 @@ public class Friend extends Application {
           Corridor.setFitHeight(950);
           Corridor.setFitWidth(850);
           Corridor.setPreserveRatio(true);
-          Corridor.setOpacity(100.0);
+          Corridor.setOpacity(15.0);
 
       Image background2 = new Image(new FileInputStream("Cellwall.jpg"));
           ImageView Cell = new ImageView(background2);
@@ -61,10 +64,10 @@ public class Friend extends Application {
   // }
     //Large Central Text
     Text StartUp = new Text("Friend (?)");
-    StartUp.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 70));
+    StartUp.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 50));
     StartUp.setFill(Color.WHITE);
     StartUp.setX(200);
-    StartUp.setY(100);
+    StartUp.setY(95);
      //First Shape: BIGSTAR1
      Circle star1 = new Circle();
      star1.setCenterX(100.0f);
@@ -185,8 +188,21 @@ public class Friend extends Application {
            }
          };
 
+         createFigure(f1);
+
+         public static void createFigure(){
+           f1 = new Figure("?", "?", "?");
+         }
+
+         createEmotion(Happy, Sad, Angry, Scared, Bored);
+
+       public static void createEmotion(Image Happy, Image sad, Image Angry, Image Scared, Image Bored){
+         emotion = new Emotion();
+
+       }
+
     //Group, scene, stage, game start
-    Group root = new Group( Corridor,  StartUp, leaveButton, enterButton, star1, star2, star3, star4, star5, star6, star7);
+    Group root = new Group( Corridor, StartUp, star1, star2, star3, star4, star5, star6, star7, Cell, leaveButton, enterButton);
     Scene scene = new Scene(root, 800, 400);
     scene.addEventFilter(KeyEvent.KEY_PRESSED, eventHandlerPress);
     primaryStage.setTitle("Friend (?)");
